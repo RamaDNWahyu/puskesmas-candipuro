@@ -17,11 +17,11 @@
 <div class="card card-custom">
     <div class="card-header">
      <h3 class="card-title">
-      Edit Pasien : {{ $data->name }}
+      Edit Staff : {{ $data->name }}
      </h3>
     </div>
     <!--begin::Form-->
-    <form method="POST" action="{{ url('pasien/' . $data->id) }}">
+    <form method="POST" action="{{ url('staff/' . $data->id) }}">
         @csrf
         @method('PUT')
      <div class="card-body">
@@ -29,7 +29,7 @@
        <div class="alert alert-custom alert-default" role="alert">
         <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
         <div class="alert-text">
-         Silahkan isi informasi pasien dengan benar dan lengkap, sesuai dengan <code>informasi</code> yang diberikan oleh pasien.
+         Silahkan isi informasi staff dengan benar dan lengkap, sesuai dengan <code>informasi</code> yang diberikan oleh staff.
         </div>
        </div>
       </div>
@@ -105,19 +105,6 @@
         </div>
        </div>
 
-       <div class="form-group row">
-        <label class="col-2 col-form-label">Kepesertaan</label>
-        <div class="col-10">
-         <select class="form-control @error('kepesertaan') is-invalid @enderror" name="kepesertaan">
-             <option @if(old('kepesertaan', $data->kepesertaan) == 'PBI') selected @endif value="PBI">PBI</option>
-             <option @if(old('kepesertaan', $data->kepesertaan) == 'NON PBI') selected @endif value="NON PBI">NON PBI</option>
-             <option @if(old('kepesertaan', $data->kepesertaan) == 'UMUM') selected @endif value="UMUM">UMUM</option>
-         </select>
-         @error('kepesertaan')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        </div>
-       </div>
 
        <div class="form-group row">
         <label  class="col-2 col-form-label">Pekerjaan</label>
@@ -134,7 +121,7 @@
       <div class="form-group row">
        <label for="example-email-input" class="col-2 col-form-label">Username</label>
        <div class="col-10">
-        <input disabled value="{{ old('username', $data->username) }}" class="form-control @error('username') is-invalid @enderror" name="username" type="text"/>
+        <input value="{{ old('username', $data->username) }}" class="form-control @error('username') is-invalid @enderror" name="username" type="text"/>
         @error('username')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror

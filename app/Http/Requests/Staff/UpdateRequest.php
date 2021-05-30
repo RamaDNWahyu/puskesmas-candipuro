@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Pasien;
+namespace App\Http\Requests\Staff;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,9 +26,8 @@ class UpdateRequest extends FormRequest
         $id = $this->id == null ? auth()->id() : $this->id;
         return [
             'ktp' => 'required|unique:users,ktp,' . $id,
-            'username' => 'unique:users,username,' . $id,
+            'username' => 'required|unique:users,username,' . $id,
             'name' => 'required',
-            'nama_kk' => 'required',
             'no_hp' => 'required',
             'tanggal_lahir' => 'required|date',
             'gender' => 'required',

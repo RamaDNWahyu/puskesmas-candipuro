@@ -98,8 +98,12 @@ class CRUDController extends Controller
         {
             return $item->hasil_pemeriksaan->terapi ?? 'Belum diperiksa';
         })
+        ->editColumn('berobat.status', function($item) {
+            $status = $item->menungggu == 'Menunggu' ? 'info' : 'success';
+            return '<span class="label label-'. $status.' label-inline mr-2">'. ucwords($item->status) .'</span>';
+        })
         ->addIndexColumn()
-        ->escapeColumns()
+        ->escapeColumns([])
         ->toJson();
     }
 

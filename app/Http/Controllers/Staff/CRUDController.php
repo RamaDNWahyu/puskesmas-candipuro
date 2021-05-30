@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Pasien;
+namespace App\Http\Controllers\Staff;
 
 use app\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Pasien\CreateRequest;
-use App\Http\Requests\Pasien\UpdateRequest;
+use App\Http\Requests\Staff\CreateRequest;
+use App\Http\Requests\Staff\UpdateRequest;
 use App\Models\TypeSoal;
 use App\Models\User;
-use App\Services\PasienService;
+use App\Services\StaffService;
 use App\Services\TipeSoalService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,15 +20,15 @@ class CRUDController extends Controller
 {
     public function getIndex()
     {
-        $page_title = 'Daftar Pasien';
-        $page_description = 'Seluruh pasien yang telah terdaftar ke sistem';
+        $page_title = 'Daftar Staff';
+        $page_description = 'Seluruh staff yang telah terdaftar ke sistem';
 
-        return view('pasien.index', compact('page_title', 'page_description'));
+        return view('staff.index', compact('page_title', 'page_description'));
     }
 
     public function getDataTable(Request $request)
     {
-        $table = User::where('role', 'Pasien');
+        $table = User::where('role', '!=', 'Pasien')->where('role', '!=', 'Petugas Pelayanan');
 
         return DataTables::eloquent($table)
         ->editColumn('tanggal_lahir', function ($item)
@@ -42,8 +42,7 @@ class CRUDController extends Controller
             return $txt;
         })
         ->addColumn('action', function($item) {
-            $txt = '<a href="'. url("pasien/edit/". $item->id) .'" class="btn btn-success mx-1">Edit</a>';
-            $txt .= '<a target="_blank" href="'. url("pasien/kartu/". $item->id) .'" class="btn btn-primary mx-1">Cetak Kartu</a>';
+            $txt = '<a href="'. url("staff/edit/". $item->id) .'" class="btn btn-success mx-1">Edit</a>';
             $txt .= '<button type="button" onclick=remove(\''. $item->id .'\') class="btn btn-danger mx-1">Remove</button>';
             return $txt;
         })
@@ -56,14 +55,14 @@ class CRUDController extends Controller
     {
         $data = User::find($id);
         if($data->delete()) {
-            Helper::saveLog('Menghapus Pasien id : ' . $id, 'event', auth()->id());
+            Helper::saveLog('Menghapus Staff id : ' . $id, 'event', auth()->id());
             return Helper::RestResponse(true, 200, 'Berhasil menghapus data!', $data);
         } else {
             return Helper::RestResponse(false, 400, 'Gagal menghapus data!');
         }
     }
 
-    public function postIndex(CreateRequest $request, PasienService $service)
+    public function postIndex(CreateRequest $request, StaffService $service)
     {
         $insert = $service->create($request->all());
         if($insert) {
@@ -84,13 +83,13 @@ class CRUDController extends Controller
     public function getEdit($id)
     {
         $data = User::find($id);
-        $page_title = 'Edit Pasien : ' . $data->name;
-        $page_description = 'Gunakan halaman ini untuk mengubah informasi pasien';
+        $page_title = 'Edit Staff : ' . $data->name;
+        $page_description = 'Gunakan halaman ini untuk mengubah informasi staff';
         // dd($data);
-        return view('pasien.edit', compact('data', 'page_title', 'page_description'));
+        return view('staff.edit', compact('data', 'page_title', 'page_description'));
     }
 
-    public function putIndex($id, UpdateRequest $request, PasienService $service)
+    public function putIndex($id, UpdateRequest $request, StaffService $service)
     {
         $update = $service->update($id, $request->except(['email', '_token', '_method', 'password_confirmation']));
         if($update) {
@@ -110,14 +109,8 @@ class CRUDController extends Controller
 
     public function getCreate()
     {
-        $page_title = 'Pendaftaran Pasien';
-        $page_description = 'Halaman ini digunakan untuk mendaftarkan pasien ke dalam sistem';
-        return view('pasien.pendaftaran', compact('page_title', 'page_description'));
-    }
-
-    public function getKartu($id)
-    {
-        $data = User::find($id);
-        return view('member-card', compact('data'));
+        $page_title = 'Pendaftaran Staff';
+        $page_description = 'Halaman ini digunakan untuk mendaftarkan staff ke dalam sistem';
+        return view('staff.pendaftaran', compact('page_title', 'page_description'));
     }
 }

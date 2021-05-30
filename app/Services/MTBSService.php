@@ -36,6 +36,7 @@ class MTBSService {
             ->update($data);
         } catch (QueryException $th) {
             DB::rollback();
+            // throw($th);
             return false;
         }
         Helper::saveLog('Update MTBS id : ' . $id, 'event', auth()->id());

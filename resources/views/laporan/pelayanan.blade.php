@@ -8,7 +8,7 @@
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
             <h3 class="card-label">Laporan Pelayanan
-                <div class="text-muted pt-2 font-size-sm">Silahkan gunakan fitur pencarian untuk mencari obat dengan cepat</div>
+                <div class="text-muted pt-2 font-size-sm">Silahkan gunakan filter melakukan rekapitulasi laporan</div>
             </h3>
         </div>
         <div class="card-toolbar">
@@ -96,6 +96,13 @@
             </tr>
             </thead>
             <tbody>
+                @php
+                $pbi = 0;
+                $non_pbi = 0;
+                $umum = 0;
+                $rujukan = 0;
+                $non_rujukan = 0;
+                @endphp
                 @forelse ($table as $t)
                     <tr>
                         <td width="2%">{{ $loop->index + 1 }}</td>
@@ -106,12 +113,29 @@
                         <td>{{ $t->rujukan_count }}</td>
                         <td>{{ $t->non_rujukan_count }}</td>
                     </tr>
+                @php
+                $pbi += $t->pbi_count;
+                $non_pbi = $t->non_pbi_count;
+                $umum = $t->umum_count;
+                $rujukan = $t->rujukan_count;
+                $non_rujukan = $t->non_rujukan_count;
+                @endphp
                 @empty
                     <tr>
                         <td colspan="7" class="text-center">Tidak ada data</td>
                     </tr>
                 @endforelse
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-center font-weight-bold"><h4>TOTAL</h4></td>
+                    <td>{{ $pbi }}</td>
+                    <td>{{ $non_pbi }}</td>
+                    <td>{{ $umum }}</td>
+                    <td>{{ $rujukan }}</td>
+                    <td>{{ $non_rujukan }}</td>
+                </tr>
+            </tfoot>
         </table>
 
     </div>

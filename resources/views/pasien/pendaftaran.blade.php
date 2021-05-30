@@ -54,8 +54,8 @@
        <label class="col-2 col-form-label">Jenis Kelamin</label>
        <div class="col-10">
         <select class="form-control @error('gender') is-invalid @enderror" name="gender">
-            <option @if(old('kepesertaan') == 'Lelaki') selected @endif value="Lelaki">Lelaki</option>
-            <option @if(old('kepesertaan') == 'Perempuan') selected @endif value="Perempuan">Perempuan</option>
+            <option @if(old('gender') == 'Laki-laki') selected @endif value="Laki-laki">Laki-laki</option>
+            <option @if(old('gender') == 'Perempuan') selected @endif value="Perempuan">Perempuan</option>
         </select>
         @error('gender')
         <div class="invalid-feedback">{{ $message }}</div>

@@ -37,13 +37,13 @@ return [
             'page' => 'berobat/pendaftaran',
             'new-tab' => false,
         ],
-        /* [
-            'title' => 'Cetak Kartu Pasien',
+        [
+            'title' => 'Management Staff',
             'root' => true,
             'icon' => 'media/svg/icons/Communication/Address-card.svg', // or can be 'flaticon-home' or any flaticon-*
-            'page' => '/cetak-kartu',
+            'page' => '/staff',
             'new-tab' => false,
-        ], */
+        ],
         [
             'title' => 'Laporan',
             'root' => true,

@@ -45,6 +45,10 @@ class CRUDController extends Controller
         {
             return '#'. $item->no_rm;
         })
+        ->editColumn('umur', function ($item)
+        {
+            return $item->umur_anak . ' Tahun';
+        })
         ->addIndexColumn()
         ->escapeColumns()
         ->toJson();

@@ -40,7 +40,9 @@
                     </div>
                     <div>
                         <a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">{{ $data->name }}</a>
+                        @if(auth()->user()->role == 'Pasien')
                         <div class="text-muted">{{ $data->kepesertaan }}</div>
+                        @endif
                         <div class="text-muted">RM-{{ $data->no_rm }}</div>
                     </div>
                 </div>
@@ -63,13 +65,24 @@
                 <!--end::Contact-->
                 <div class="separator separator-dashed my-2"></div>
                 <!--begin::Nav-->
-                <h5>Ganti Password</h5>
+                <h5>Ganti Info Login</h5>
+                @if(auth()->user()->role == 'Pasien')
                 <div class="form-group">
-                    <label for="example-password-input">Password</label>
+                    <label for="example-username-input">Username</label>
+                     <input class="form-control @error('username') is-invalid @enderror" value="{{ old('username', $data->username) }}" type="text" name="username"/>
+                     @error('username')
+                     <div class="invalid-feedback">{{ $message }}</div>
+                     @enderror
+                     <div class="help-block">Jika tidak ingin merubah username, jangan di ubah!</div>
+                </div>
+                @endif
+                <div class="form-group">
+                    <label for="example-password-input">Password Baru</label>
                      <input class="form-control @error('password') is-invalid @enderror" type="password" name="password"/>
                      @error('password')
                      <div class="invalid-feedback">{{ $message }}</div>
                      @enderror
+                     <div class="help-block">Jika tidak ingin merubah passsword, biarkan kosong saja!</div>
                 </div>
                 <div class="form-group">
                     <label for="example-password-input">Konfirmasi Password</label>
@@ -126,7 +139,7 @@
                         <label class="col-xl-3 col-lg-3 col-form-label">Jenis Kelamin</label>
                         <div class="col-lg-9 col-xl-6">
                             <select class="form-control @error('gender') is-invalid @enderror" name="gender">
-                                <option @if(old('gender', $data->gender) == 'Lelaki') selected @endif value="Lelaki">Lelaki</option>
+                                <option @if(old('gender', $data->gender) == 'Laki-laki') selected @endif value="Laki-laki">Laki-laki</option>
                                 <option @if(old('gender', $data->gender) == 'Perempuan') selected @endif value="Perempuan">Perempuan</option>
                             </select>
                             @error('gender')
@@ -171,6 +184,7 @@
                             @enderror
                         </div>
                     </div>
+                    @if(auth()->user()->role == 'Pasien')
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Kepesertaan</label>
                         <div class="col-lg-9 col-xl-6">
@@ -184,6 +198,7 @@
                            @enderror
                         </div>
                     </div>
+                    @endif
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Pekerjaan</label>
                         <div class="col-lg-9 col-xl-6">

@@ -7,13 +7,13 @@
 <div class="card card-custom">
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
-            <h3 class="card-label">Data MTBS Pasien
-                <div class="text-muted pt-2 font-size-sm">Silahkan gunakan fitur pencarian untuk mencari obat dengan cepat</div>
+            <h3 class="card-label">Data Staff
+                <div class="text-muted pt-2 font-size-sm">Silahkan gunakan fitur pencarian untuk mencari staff dengan cepat</div>
             </h3>
         </div>
         <div class="card-toolbar">
             <!--begin::Button-->
-            <a href="{{ url('mtbs/create') }}" class="btn btn-primary font-weight-bolder">
+            <a href="{{ url('staff/create') }}" class="btn btn-primary font-weight-bolder">
             <span class="svg-icon svg-icon-md">
                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -24,7 +24,7 @@
                     </g>
                 </svg>
                 <!--end::Svg Icon-->
-            </span>Tambah MTBS</a>
+            </span>Pendaftaran Staff</a>
             <!--end::Button-->
         </div>
     </div>
@@ -35,11 +35,12 @@
             <thead>
             <tr>
                 <th>No</th>
-                <th>No RM</th>
-                <th>Tanggal</th>
-                <th>Nama Anak</th>
-                <th>Gender</th>
+                <th>No Registrasi</th>
+                <th>KTP</th>
+                <th>Nama Lengkap</th>
+                <th>Role</th>
                 <th>Umur</th>
+                <th>Jenis Kelamin</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -74,7 +75,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                'url': '{{ url("/mtbs/data-table") }}',
+                'url': '{{ url("/staff/data-table") }}',
                 'type': 'GET',
             },
             columns: [
@@ -85,16 +86,19 @@
                     data: 'no_rm', name: 'no_rm', orderable: true, searchable: true
                 },
                 {
-                    data: 'tanggal', name: 'tanggal', orderable: false, searchable: false
+                    data: 'ktp', name: 'ktp', orderable: true, searchable: true
                 },
                 {
-                    data: 'nama_anak', name: 'nama_anak', orderable: true, searchable: true
+                    data: 'name', name: 'name', orderable: true, searchable: true
+                },
+                {
+                    data: 'role', name: 'role', orderable: true, searchable: true
+                },
+                {
+                    data: 'tanggal_lahir', name: 'tanggal_lahir', orderable: false, searchable: false
                 },
                 {
                     data: 'gender', name: 'gender', orderable: true, searchable: true
-                },
-                {
-                    data: 'umur', name: 'umur', orderable: true, searchable: true
                 },
                 {
                     data: 'action', name: 'action', orderable: false, searchable: false
@@ -103,7 +107,7 @@
             columnDefs: [
                 {
                     className: 'text-center',
-                    targets: [0, 6]
+                    targets: [0, 5, 6, 7]
                 },
                 {
                     className: 'text-wrap',
@@ -133,7 +137,7 @@
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
-                            url: '/mtbs/' + id,
+                            url: '/staff/' + id,
                             type: "delete",
                         }).done(function (data) {
                         table.ajax.reload();

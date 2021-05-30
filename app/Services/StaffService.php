@@ -10,7 +10,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class PasienService {
+class StaffService {
     public function create($data)
     {
         $today = Carbon::now()->format('dmy');
@@ -23,12 +23,12 @@ class PasienService {
             $no = sprintf("%04d", $no);
         }
         DB::beginTransaction();
-        $data['no_rm'] = $today . $no;
+        $data['no_rm'] = 'STAF' . $today . $no;
 
         $insert = User::create($data);
         if($insert) {
             DB::commit();
-            Helper::saveLog('Menyimpan Pasien NO RM : ' . $insert->no_rm, 'event', auth()->id());
+            Helper::saveLog('Menyimpan Staff NO RM : ' . $insert->no_rm, 'event', auth()->id());
             return $insert;
         } else {
             DB::rollback();
@@ -53,7 +53,7 @@ class PasienService {
             DB::rollback();
             return false;
         }
-        Helper::saveLog('Update Pasien : ' . $id, 'event', auth()->id());
+        Helper::saveLog('Update Staf : ' . $id, 'event', auth()->id());
         DB::commit();
         return true;
     }

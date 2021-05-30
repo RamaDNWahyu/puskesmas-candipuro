@@ -126,9 +126,7 @@ function bulan_indo($month_number)
     <table class="table-header" width="100%" border="0">
         <tbody>
             <tr>
-                <td width="10%" valign="middle" style="padding-top: 20px"><img
-                        src="https://lampungprov.go.id/portal/images/icons/logolampung.png" width="80" height="96"
-                        alt="" /></td>
+                <td width="10%" valign="middle" style="padding-top: 20px"></td>
 
                 <th align="center" valign="middle">
                     <span align="center" style="text-transform: uppercase; font-size: 30px;"><strong> PUSKESMAS<br>

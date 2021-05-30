@@ -17,6 +17,7 @@ class MTBS extends Model
     protected $fillable = [
         'no_rm',
         'nama_anak',
+        'umur_anak',
         'gender',
         'berat_badan',
         'tinggi',
@@ -37,6 +38,7 @@ class MTBS extends Model
         'tindakan_bahaya_umum',
         'hasil_rdt',
         'hasil_sdm',
+        'tanggal',
     ];
 
     public function pasien()

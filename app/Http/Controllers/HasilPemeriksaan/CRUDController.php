@@ -24,7 +24,7 @@ class CRUDController extends Controller
         $page_title = 'Tambah Hasil Pemeriksaan';
         $page_description = 'Digunakan untuk menambahkan hasil pemeriksaan terhadap pasien';
 
-        $data = Berobat::select('*', 'berobat.id as id_berobat')->join('users', 'berobat.no_rm', '=', 'users.no_rm')->whereDate('berobat.tanggal', today())->get();
+        $data = Berobat::select('*', 'berobat.id as id_berobat')->join('users', 'berobat.no_rm', '=', 'users.no_rm')->whereDate('berobat.tanggal', today())->where('berobat.status', 'Menunggu')->get();
 
         return view('hasil-pemeriksaan.index', compact('page_title', 'page_description', 'data'));
     }

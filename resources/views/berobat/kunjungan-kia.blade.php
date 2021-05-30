@@ -66,6 +66,7 @@
             <thead>
             <tr>
                 <th>No</th>
+                <th>Status</th>
                 <th>KTP</th>
                 <th>No Urut</th>
                 <th>Nama Pasien</th>
@@ -76,6 +77,7 @@
                 <th>Kasus</th>
                 <th>Diagnosa</th>
                 <th>Terapi</th>
+                <th>Alamat</th>
                 <th width="20%">Action</th>
             </tr>
             </thead>
@@ -128,6 +130,9 @@
                     data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false
                 },
                 {
+                    data: 'berobat.status', name: 'berobat.status', orderable: true, searchable: true
+                },
+                {
                     data: 'pasien.ktp', name: 'pasien.ktp', orderable: true, searchable: true
                 },
                 {
@@ -158,13 +163,16 @@
                     data: 'hasil_pemeriksaan.terapi', name: 'hasil_pemeriksaan.terapi', orderable: true, searchable: true
                 },
                 {
+                    data: 'pasien.alamat', name: 'pasien.alamat', orderable: true, searchable: true
+                },
+                {
                     data: 'action', name: 'action', orderable: false, searchable: false
                 },
             ],
             columnDefs: [
                 {
                     className: 'text-center',
-                    targets: [0, 11]
+                    targets: [0, 13]
                 },
                 {
                     className: 'text-wrap',

@@ -24,6 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'tanggal' => 'required',
+            'umur_anak' => 'required',
             'gender' => 'required',
             'berat_badan' => 'required',
             'tinggi' => 'required',

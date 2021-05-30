@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Pasien;
+namespace App\Http\Requests\Staff;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,17 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->id == null ? auth()->id() : $this->id;
         return [
-            'ktp' => 'required|unique:users,ktp,' . $id,
-            'username' => 'unique:users,username,' . $id,
+            'ktp' => 'required|unique:users,ktp',
             'name' => 'required',
-            'nama_kk' => 'required',
             'no_hp' => 'required',
+            'email' => 'required|unique:users,email|email',
+            'username' => 'required|unique:users,username',
             'tanggal_lahir' => 'required|date',
             'gender' => 'required',
             'alamat' => 'required',
             'pekerjaan' => 'required',
+            'password' => 'required|confirmed|min:8',
         ];
     }
 

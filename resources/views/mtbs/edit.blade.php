@@ -31,6 +31,15 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="" class="col-form-label col-3 text-right">Tanggal MTBS</label>
+            <div class="col-9">
+                <input type="date" value="{{ old('tanggal',$data->tanggal) }}" class="form-control @error('tanggal') is-invalid @endif" name="tanggal" placeholder="Nama anak yang berobat">
+                @error('tanggal')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="" class="col-form-label col-3 text-right">Nama Pasien</label>
             <div class="col-9">
                 <input type="text" class="form-control" readonly value="{{ $data->pasien->name }}">
@@ -46,11 +55,26 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="" class="col-form-label col-3 text-right">Umur Anak</label>
+            <div class="col-9">
+                <div class="input-group">
+                    <input type="number" value="{{ old('umur_anak', $data->umur_anak) }}" class="form-control @error('umur_anak') is-invalid @endif" name="umur_anak" placeholder="Umur anak yang berobat">
+                    <div class="input-group-append">
+                        <span class="input-group-text">tahun</span>
+                    </div>
+                </div>
+
+                @error('umur_anak')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="" class="col-form-label col-3 text-right">Jenis Kelamin</label>
             <div class="col-9">
                 <select name="gender" class="form-control @error('gender') is-invalid @endif">
                     <option value="" disabled>Pilih Gender</option>
-                    <option value="Lelaki" @if(old('gender', $data->gender) == 'Lelaki') selected @endif>Lelaki</option>
+                    <option value="Laki-laki" @if(old('gender', $data->gender) == 'Laki-laki') selected @endif>Laki-laki</option>
                     <option value="Perempuan" @if(old('gender',  $data->gender) == 'Perempuan') selected @endif>Perempuan</option>
                 </select>
                 @error('gender')
@@ -63,21 +87,38 @@
             <label for="" class="align-self-center text-right col-form-label col-3">Informasi keadaan pasien</label>
             <div class="col-3">
                 <label for="" class="col-form-label">Berat Badan</label>
-                <input type="number" value="{{ old('berat_badan', $data->berat_badan) }}" class="form-control @error('berat_badan') is-invalid @endif" name="berat_badan" placeholder="Berat badan pasien">
+                <div class="input-group">
+                    <input type="number" value="{{ old('berat_badan', $data->berat_badan) }}" class="form-control @error('berat_badan') is-invalid @endif" name="berat_badan" placeholder="Berat badan pasien">
+                    <div class="input-group-append">
+                        <span class="input-group-text">kg</span>
+                    </div>
+                </div>
+
                 @error('berat_badan')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-3">
                 <label for="" class="col-form-label">Tinggi Badan</label>
-                <input type="number" value="{{ old('tinggi', $data->tinggi) }}" class="form-control @error('tinggi') is-invalid @endif" name="tinggi" placeholder="Tinggi badan pasien">
+                <div class="input-group">
+                    <input type="number" value="{{ old('tinggi', $data->tinggi) }}" class="form-control @error('tinggi') is-invalid @endif" name="tinggi" placeholder="Tinggi badan pasien">
+                    <div class="input-group-append">
+                        <span class="input-group-text">cm</span>
+                    </div>
+                </div>
+
                 @error('tinggi')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-3">
                 <label for="" class="col-form-label">Suhu Badan</label>
-                <input type="number" value="{{ old('suhu', $data->suhu) }}" class="form-control @error('suhu') is-invalid @endif" name="suhu" placeholder="Suhu badan pasien">
+                <div class="input-group">
+                    <input type="number" value="{{ old('suhu', $data->suhu) }}" class="form-control @error('suhu') is-invalid @endif" name="suhu" placeholder="Suhu badan pasien">
+                    <div class="input-group-append">
+                        <span class="input-group-text">°C</span>
+                    </div>
+                </div>
                 @error('suhu')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

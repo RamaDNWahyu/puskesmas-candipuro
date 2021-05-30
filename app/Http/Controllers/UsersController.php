@@ -21,17 +21,17 @@ class UsersController extends Controller
 
     public function updateProfile(UpdateRequest $request, PasienService $service)
     {
-        $update = $service->update(auth()->id(), $request->except(['email', 'username', '_token', '_method', 'password_confirmation']));
+        $update = $service->update(auth()->id(), $request->except(['email', '_token', '_method', 'password_confirmation']));
         if($update) {
             $msg['color'] = 'primary';
             $msg['success'] = true;
-            $msg['message'] = 'Berhasil update data pasien!';
+            $msg['message'] = 'Berhasil update data!';
             Session::flash('message', $msg);
             return Redirect::back();
         } else {
             $msg['color'] = 'danger';
             $msg['success'] = false;
-            $msg['message'] = 'Gagal update data pasien!';
+            $msg['message'] = 'Gagal update data!';
             Session::flash('message', $msg);
             return Redirect::back()->withInput();
         }

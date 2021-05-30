@@ -30,6 +30,15 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="" class="col-form-label col-3 text-right">Tanggal MTBS</label>
+            <div class="col-9">
+                <input type="date" value="{{ old('tanggal') }}" class="form-control @error('tanggal') is-invalid @endif" name="tanggal" placeholder="Nama anak yang berobat">
+                @error('tanggal')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="" class="col-form-label col-3 text-right">Nama Pasien</label>
             <div class="col-9">
                 <select name="no_rm" id="select-rm" class="form-control @error('no_rm') is-invalid @endif">
@@ -53,11 +62,25 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="" class="col-form-label col-3 text-right">Umur Anak</label>
+            <div class="col-9">
+                <div class="input-group">
+                    <input type="number" value="{{ old('umur_anak') }}" class="form-control @error('umur_anak') is-invalid @endif" name="umur_anak" placeholder="Umur anak yang berobat">
+                    <div class="input-group-append">
+                        <span class="input-group-text">tahun</span>
+                    </div>
+                </div>
+                @error('umur_anak')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="" class="col-form-label col-3 text-right">Jenis Kelamin</label>
             <div class="col-9">
                 <select name="gender" class="form-control @error('gender') is-invalid @endif">
                     <option value="" disabled>Pilih Gender</option>
-                    <option value="Lelaki" @if(old('gender') == 'Lelaki') selected @endif>Lelaki</option>
+                    <option value="Laki-laki" @if(old('gender') == 'Laki-laki') selected @endif>Laki-laki</option>
                     <option value="Perempuan" @if(old('gender') == 'Perempuan') selected @endif>Perempuan</option>
                 </select>
                 @error('gender')
@@ -70,21 +93,38 @@
             <label for="" class="align-self-center text-right col-form-label col-3">Informasi keadaan pasien</label>
             <div class="col-3">
                 <label for="" class="col-form-label">Berat Badan</label>
-                <input type="number" value="{{ old('berat_badan') }}" class="form-control @error('berat_badan') is-invalid @endif" name="berat_badan" placeholder="Berat badan pasien">
+                <div class="input-group">
+                    <input type="number" value="{{ old('berat_badan') }}" class="form-control @error('berat_badan') is-invalid @endif" name="berat_badan" placeholder="Berat badan pasien">
+                    <div class="input-group-append">
+                        <span class="input-group-text">kg</span>
+                    </div>
+                </div>
+
                 @error('berat_badan')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-3">
                 <label for="" class="col-form-label">Tinggi Badan</label>
-                <input type="number" value="{{ old('tinggi') }}" class="form-control @error('tinggi') is-invalid @endif" name="tinggi" placeholder="Tinggi badan pasien">
+                <div class="input-group">
+                    <input type="number" value="{{ old('tinggi') }}" class="form-control @error('tinggi') is-invalid @endif" name="tinggi" placeholder="Tinggi badan pasien">
+                    <div class="input-group-append">
+                        <span class="input-group-text">cm</span>
+                    </div>
+                </div>
+
                 @error('tinggi')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-3">
                 <label for="" class="col-form-label">Suhu Badan</label>
-                <input type="number" value="{{ old('suhu') }}" class="form-control @error('suhu') is-invalid @endif" name="suhu" placeholder="Suhu badan pasien">
+                <div class="input-group">
+                    <input type="number" value="{{ old('suhu') }}" class="form-control @error('suhu') is-invalid @endif" name="suhu" placeholder="Suhu badan pasien">
+                    <div class="input-group-append">
+                        <span class="input-group-text">°C</span>
+                    </div>
+                </div>
                 @error('suhu')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -140,7 +180,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="" class="col-form-label col-3 text-right">Tanda Bahaya Umum</label>
+            <label for="" class="col-form-label col-3 text-right">Tindakan Bahaya Umum</label>
             <div class="col-9">
                 <select class="form-control @error('tanda_bahaya') is-invalid @enderror" name="tanda_bahaya[]" multiple id="select-tanda-bahaya">
                     <option {{ (collect(old('tanda_bahaya'))->contains("Tidak bisa minum atau menyusu")) ? 'selected':'' }} value="Tidak bisa minum atau menyusu">Tidak bisa minum atau menyusu</option>
@@ -243,7 +283,7 @@
     </div>
     <div class="card-body">
         <div class="form-group row">
-            <label for="" class="col-form-label col-3 text-right">Klasifikasi Tanda Umum</label>
+            <label for="" class="col-form-label col-3 text-right">Klasifikasi Bahaya Umum</label>
             <div class="col-9">
                 <select name="klasifikasi_bahaya_umum" id="" class="form-control @error('klasifikasi_bahaya_umum') is-invalid @enderror">
                     <option @if(old('klasifikasi_bahaya_umum') == 0) selected @endif value="0">Tidak</option>

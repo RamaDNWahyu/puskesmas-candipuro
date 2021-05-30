@@ -24,6 +24,8 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
+            'tanggal' => 'required',
+            'umur_anak' => 'required',
             'no_rm' => 'required',
             'nama_anak' => 'required',
             'gender' => 'required',

@@ -119,7 +119,7 @@
                     <!--begin::Symbol-->
                     <div class="symbol symbol-40 symbol-light-white mr-5">
                         <div class="symbol-label">
-                            <img src="@if($data->gender == 'Lelaki') /media/svg/avatars/008-boy-3.svg @else /media/svg/avatars/002-girl.svg @endif" class="h-75 align-self-end" alt="">
+                            <img src="@if($data->gender == 'Laki-laki') /media/svg/avatars/008-boy-3.svg @else /media/svg/avatars/002-girl.svg @endif" class="h-75 align-self-end" alt="">
                         </div>
                     </div>
                     <!--end::Symbol-->

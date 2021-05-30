@@ -24,6 +24,7 @@ Route::middleware(['auth', 'check.lengkap'])->group(function () {
     Route::get('daftar-kunjungan-kia', 'Berobat\CRUDController@daftarKunjungan');
     AdvancedRoute::controllers([
         'pasien' => Pasien\CRUDController::class,
+        'staff' => Staff\CRUDController::class,
         'obat' => Obat\CRUDController::class,
         'berobat' => Berobat\CRUDController::class,
         'laporan' => Laporan\CRUDController::class,

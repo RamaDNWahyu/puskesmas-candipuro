@@ -115,6 +115,21 @@
         </div>
        </div>
 
+       <div class="form-group row">
+        <label class="col-2 col-form-label">Role</label>
+        <div class="col-10">
+         <select class="form-control @error('role') is-invalid @enderror" name="role">
+             <option @if(old('role') == 'Petugas Medis') selected @endif value="Petugas Medis">Petugas Medis</option>
+             <option @if(old('role') == 'Petugas Pelayanan') selected @endif value="Petugas Pelayanan">Petugas Pelayanan</option>
+             <option @if(old('role') == 'Petugas KIA') selected @endif value="Petugas KIA">Petugas KIA</option>
+             <option @if(old('role') == 'Kepala Puskes') selected @endif value="Kepala Puskes">Kepala Puskes</option>
+         </select>
+         @error('role')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        </div>
+       </div>
+
        <div class="separator separator-dashed mt-8 mb-5"></div>
 
       <div class="form-group row">
